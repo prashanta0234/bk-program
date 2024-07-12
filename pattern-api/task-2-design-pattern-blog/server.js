@@ -8,6 +8,8 @@ import LoginController from "./src/modules/auth/login.controller.js";
 import GetPostController from "./src/modules/post/getPost.controller.js";
 import CreatePostController from "./src/modules/post/createPost.controller.js";
 import GetPostsController from "./src/modules/post/getPosts.controller.js";
+import CommentController from "./src/modules/comments/comment.controller.js";
+import SupportController from "./src/modules/support/support.contoller.js";
 
 dotenv.config();
 // import postRoutes from "./routes/postRoutes";
@@ -23,6 +25,9 @@ app.get("/posts", GetPostsController.getPosts);
 
 app.use(AuthGuard.IsAuthenticated);
 app.post("/post", CreatePostController.createPost);
+app.post("/post/comment/:postId", CommentController.crateComment);
+
+app.post("/post/support", SupportController.support);
 
 app.get("/", (req, res) => {
 	res.json({
